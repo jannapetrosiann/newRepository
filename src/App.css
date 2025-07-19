@@ -1,0 +1,15 @@
+.whole{
+  display: grid;
+  grid-template-areas: 
+  'h h'
+  'n c';
+  grid-template-rows: 150px 10fr;
+  grid-template-columns: 200px;
+
+
+}
+
+.content{
+  grid-area:c;
+  background-color: rgb(93, 74, 110);
+}

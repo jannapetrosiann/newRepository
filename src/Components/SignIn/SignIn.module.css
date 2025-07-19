@@ -1,0 +1,26 @@
+.signIn{
+    display: flex;
+    flex-direction: column;
+    padding-left: 50px;
+}
+.signIn input{
+    width: 200px;
+    border-style: groove;
+    border-radius: 7px;
+}
+.signIn button{
+color:black;
+width: 100px;
+height: 30px;
+font-size: 13.5px;
+font-style: oblique;
+}
+
+.text{
+    color:white;
+    font-size: 20px;
+}
+.error{
+    color:rgb(119, 3, 3);
+
+}

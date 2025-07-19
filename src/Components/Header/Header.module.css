@@ -1,0 +1,9 @@
+.grid{
+    grid-area: h;
+
+}
+
+.grid img{
+    height: 150px;
+    width:1600px;
+}
