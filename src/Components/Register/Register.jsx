@@ -28,7 +28,7 @@ function submit(e){
     setFirstName('');
     setLastName('');
     setUsername('');
-    setPassword('')
+    setPassword('');
 }
 
 function checkUsername(value){
@@ -46,11 +46,7 @@ if(invalidUsername){
 function handleUsername(e){
     setUsername(e.target.value);
     checkUsername(e.target.value);
-}
 
-function handlePassword(e){
-    setPassword(e.target.value);
-    checkUsername(e.target.value);
 }
 
 
@@ -63,8 +59,8 @@ function handlePassword(e){
             <span className={s.error}>{error}</span>
             <input value={firstName} onChange={(e)=>setFirstName(e.target.value)} placeholder='First name'></input>
             <input  value={lastName} onChange={(e)=>setLastName(e.target.value)} placeholder='Last name'></input>
-            <input onChange={handleUsername} type='text' placeholder='Username'></input>
-            <input value={password}  onChange={handlePassword} placeholder='Password' type="password"></input><br />
+            <input value ={username} onChange={handleUsername} type='text' placeholder='Username'></input>
+            <input value={password}  onChange={(e) => setPassword(e.target.value)} placeholder='Password' type="password"></input><br />
             <button type="submit" onClick={submit}>Submit</button>
             <p>Already registered? <NavLink className={s.sign} to="/signIn">sign in</NavLink> </p>
         </form>
