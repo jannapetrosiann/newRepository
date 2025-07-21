@@ -4,60 +4,56 @@ import {useState} from 'react'
 
 
 const SignIn = () => {
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
+const [creds, setCreds] = useState({
+    username: '',
+    password: ''
+})
 const [message, setMessage] = useState("");
 const navigate = useNavigate();
 
 function checkUser(username, password){
-    const users =  localStorage.getItem('users')? JSON.parse(localStorage.getItem('users')) : [];
+    const users =  localStorage.getItem('users') ? JSON.parse(localStorage.getItem('users')) : [];
 
     const founded = users.find(user=> user.username === username);
     if(!founded){
         setMessage("Invalid username!") ;
-        return false;
+        return;
 
-    }else if(founded.password !== password){
-        setMessage("Invalid password!");
-        return false;
-
-    }else {
-        setMessage('');
-        localStorage.setItem('currentUser', JSON.stringify(founded));
-        return true;
     }
+    if(founded.password !== password){
+        setMessage("Invalid password!");
+        return;
+
+    }
+
+    setMessage('');
+    localStorage.setItem('currentUser', JSON.stringify(founded));
+    return true;
 
 }
 
 function signIn(){
-    const isValid= checkUser(username, password);
-    if(!isValid) return;
-    setUsername('');
-    setPassword('');
+    const isValid= checkUser(creds.username, creds.password);
+    if(!isValid) {
+        return;
+    }
+
+    setCreds({username: '', password: ''});
     navigate('/list');
     window.location.reload();
 }
     
-function handleUser(e){
-    const newUsername = e.target.value;
-    setUsername(newUsername);
-    checkUser(newUsername, password);
+function handleChange(e){
+    setCreds({...creds, [e.target.name]: e.target.value});
 }
-
-function handlePassword(e){
-    const newPassword= e.target.value;
-    setPassword(newPassword);
-    checkUser(username, newPassword);
-}
-
 
 
     return <div className={s.signIn}>
         <p className={s.text}>Sign In</p>
         <span className={s.error}>{message}</span>
-        <input  onChange={handleUser} type="text" placeholder="Username"  ></input>
-        <input onChange={handlePassword}type="password" placeholder="Password" ></input><br />
-        <button onClick={signIn}>Sign In</button><br />
+        <input  onChange={handleChange} type="text" placeholder="Username"  name="username" />
+        <input onChange={handleChange} type="password" placeholder="Password" name="password" />
+        <button onClick={signIn}>Sign In</button>
     </div>
 }
 
