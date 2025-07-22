@@ -1,30 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import App from "./App";
-import {
-  addList,
-  deleteItem,
-  subscribe,
-  updateList,
-  logout,
-} from "./redux/store";
 import reportWebVitals from "./reportWebVitals";
-import store from "./redux/store";
+import store from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-export const rerenderEntireTree = () => {
-  root.render(
-    <App
-      store={store}
-      addList={addList}
-      deleteItem={deleteItem}
-      updateList={updateList}
-      logout={logout}
-    />,
-  );
-};
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+);
 
-rerenderEntireTree();
-subscribe(rerenderEntireTree);
 reportWebVitals();
