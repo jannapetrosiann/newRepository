@@ -12,7 +12,7 @@ const MyList = () => {
     <div className={s.ToDoList}>
       {list.map((element) => (
         <div>
-          <img className={s.img} alt="completed" src={element.CheckMark} />
+          <img className={s.img} alt="completed" src={element.checkMark} />
           <span className={s.item}>{element.message}</span>
           <button onClick={() => dispatch(deleteItem(element.id))}>
             Delete

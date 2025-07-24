@@ -11,14 +11,16 @@ const listSlice = createSlice({
   reducers: {
     addList: (state) => {
       if (!state.newText.trim()) return;
-      const newText = {
-        id: new Date().getTime(),
-        CheckMark:
-          "https://as2.ftcdn.net/jpg/06/01/98/99/1000_F_601989911_qULd3Bz9Nujn7izxcVTa76E0jnjixugj.jpg",
-        message: state.newText,
+      return {
+        ...state,
+        list: state.list.concat({
+          id: new Date().getTime(),
+          checkMark:
+            "https://as2.ftcdn.net/jpg/06/01/98/99/1000_F_601989911_qULd3Bz9Nujn7izxcVTa76E0jnjixugj.jpg",
+          message: state.newText,
+        }),
+        newText: "",
       };
-      state.list.push(newText);
-      state.newText = "";
     },
     deleteItem: (state, action) => {
       state.list = state.list.filter((item) => item.id !== action.payload);
