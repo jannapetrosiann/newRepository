@@ -6,7 +6,7 @@ import List from "./Components/List/List.jsx";
 import Register from "./Components/Register/Register.jsx";
 import SignIn from "./Components/SignIn/SignIn.jsx";
 
-const App = (props) => {
+const App = () => {
   return (
     <BrowserRouter>
       <div className="whole">
@@ -15,18 +15,7 @@ const App = (props) => {
 
         <div className="content">
           <Routes>
-            <Route
-              path="/list"
-              element={
-                <List
-                  state={props.store.state}
-                  addList={props.addList}
-                  deleteItem={props.deleteItem}
-                  updateList={props.updateList}
-                  logout={props.logout}
-                />
-              }
-            />
+            <Route path="/list" element={<List />} />
             <Route path="/register" element={<Register />}></Route>
             <Route path="/signIn" element={<SignIn />}></Route>
           </Routes>

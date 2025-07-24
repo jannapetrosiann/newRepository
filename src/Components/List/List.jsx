@@ -1,34 +1,16 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import * as listSlice from "./../../store/slices/listSlice.js";
 import MyList from "./MyList/MyList";
 import s from "./List.module.css";
+const List = () => {
+  const dispatch = useDispatch();
 
-const List = (props) => {
-  const navigate = useNavigate();
-  const [text, setText] = useState("");
+  const newText = useSelector((state) => state.list_slice.newText);
+
   const userFullName = JSON.parse(localStorage.getItem("currentUser"));
   const fullName = userFullName
     ? `${userFullName.firstName} ${userFullName.lastName}`
     : "Unknown";
-
-  const AddList = () => {
-    props.addList();
-    setText("");
-  };
-  const handle = (id) => {
-    props.deleteItem(id);
-  };
-
-  const changeList = (e) => {
-    setText(e.target.value);
-    props.updateList(e.target.value);
-  };
-
-  const LogOut = () => {
-    props.logout();
-    navigate("/register");
-    window.location.reload();
-  };
 
   return (
     <div className={s.list}>
@@ -37,21 +19,14 @@ const List = (props) => {
           <span className={s.user}>{fullName}</span>
         </div>
         <textarea
-          onChange={changeList}
+          onChange={(e) => dispatch(listSlice.updateList(e.target.value))}
           placeholder="Write your doing list"
-          value={text}
+          value={newText}
         />
       </div>
-      <button onClick={AddList}>Add</button>
-      <button onClick={LogOut}>logOut</button>
-      <MyList
-        list={props.state.list}
-        newText={text}
-        addList={props.addList}
-        deleteItem={props.deleteItem}
-        updateList={props.updateList}
-        handle={handle}
-      />
+      <button onClick={() => dispatch(listSlice.addList())}>Add</button>
+      <button onClick={() => dispatch(listSlice.logout())}>logOut</button>
+      <MyList />
     </div>
   );
 };
