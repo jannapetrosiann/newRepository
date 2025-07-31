@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar/Navbar.jsx";
 import List from "./Components/List/List.jsx";
 import Register from "./Components/Register/Register.jsx";
 import SignIn from "./Components/SignIn/SignIn.jsx";
+import Todos from "./Components/List/Todos.jsx";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/list" element={<List />} />
             <Route path="/register" element={<Register />}></Route>
             <Route path="/signIn" element={<SignIn />}></Route>
+            <Route path="/todos" element={<Todos />}></Route>
           </Routes>
         </div>
       </div>
