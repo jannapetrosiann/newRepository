@@ -41,7 +41,9 @@ const Register = () => {
 
   function handleChange(e) {
     setCreds({ ...creds, [e.target.name]: e.target.value });
-    checkUsername(e.target.value);
+    if (e.target.name === "username") {
+      checkUsername(e.target.value);
+    }
   }
 
   return (
